@@ -1,0 +1,100 @@
+syntax = "proto3";
+
+package metal;
+
+option go_package = "./v1";
+
+service MetalDoorsApi {
+  rpc GetPosts(PostsRequest) returns (stream PostsResponse) {}
+  rpc CreatePost(CreatePostRequest) returns (CreatePostResponse) {}
+  rpc GetSingleMetalDoor(SingleMetalDoorRequest) returns (SingleMetalDoorResponse) {}
+}
+
+
+message PostsRequest {}
+message PostsResponse {
+  Post data = 1;
+}
+message Post {
+  string id = 1;
+  string title = 2;
+  float price = 3;
+  repeated string tags = 4;
+  repeated InColors in_colors = 5;
+  repeated string in_images = 6;
+  repeated string out_images = 7;
+}
+message InColors {
+  string color = 1;
+  string hex = 2;
+}
+
+message SingleMetalDoorRequest {
+  string id = 1;
+}
+
+message SingleMetalDoorResponse {
+  string id = 1;
+  string title = 2;
+  float price = 3;
+  Specifications specifications = 4;
+  message variant {
+    repeated string in_images = 1;
+    repeated string out_images = 2;
+    string in_color = 3;
+    string out_color = 4;
+    string hex = 5;
+  }
+  repeated variant variants = 5;
+  repeated string tags = 6;
+}
+
+
+message Specifications {
+  float height = 1;
+  float metal = 2;
+  float leaf = 3;
+  string upper_lock = 4;
+  string lower_lock = 5;
+  string valve = 6;
+  string armor = 7;
+  string cylinder = 8;
+  string peephole = 9;
+  string insulation = 10;
+  string sealer = 11;
+  string handle = 12;
+}
+message Variant {
+  string in_color = 1;
+  string out_color = 2;
+  repeated string in_images = 3;
+  repeated string out_images = 4;
+  repeated Size size = 6;
+  string hex = 7;
+}
+message Size {
+  int32 width = 1;
+  string side = 2;
+  repeated SizeData data = 3;
+}
+message SizeData {
+  string serial = 1;
+  string dealer = 2;
+  string state = 3;
+  string prepay = 4;
+  string order_date = 5;
+  string ready_date = 6;
+  string reserve_end_date = 7;
+}
+message CreatePostRequest {
+  string title = 1;
+  bool for_catalog = 2;
+  map <string, float> price = 3;
+  Specifications specifications = 4;
+  repeated string tags = 5;
+  repeated Variant variants = 6;
+}
+message CreatePostResponse {
+  string status = 1;
+  optional string id = 2;
+}

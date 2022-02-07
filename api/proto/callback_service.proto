@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package callback;
+
+option go_package = "./v1";
+
+message CallbackRequest {
+  string name = 1;
+  string phone = 2;
+}
+
+message CallbackResponse {
+  enum Status {
+    ERROR = 0;
+    IN_PROGRESS = 1;
+    SUCCESS = 2;
+  }
+  Status status = 1;
+}
+
+service CallbackService {
+  rpc Callback(CallbackRequest) returns (CallbackResponse) {};
+}

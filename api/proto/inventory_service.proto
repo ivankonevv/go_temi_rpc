@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package inventory;
+
+option go_package = "./v1";
+
+message InventoryModel {
+  string id = 1;
+  string title = 2;
+  string serial = 3;
+  string color = 4;
+  message SizeCounter {
+    float width = 1;
+    string side = 2;
+    int32 count = 3;
+    bool valid = 4;
+  }
+  repeated SizeCounter count = 5;
+}
+
+message NewInventoryRequest {
+  string author = 2;
+  repeated InventoryModel data = 3;
+}
+
+message NewInventoryResponse {
+  string id = 1;
+}
+
+service InventoryService {
+  rpc NewInventory(NewInventoryRequest) returns (NewInventoryResponse) {};
+}
