@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package wood.color;
+
+option go_package = "./v1";
+
+service ColorsApi {
+  rpc GetColors(ColorsRequest) returns (stream ColorsResponse) {}
+  rpc CreateColor(NewColorRequest) returns (NewColorResponse) {}
+
+  rpc GetMwColors(ManufacturersWColorsRequest) returns (stream ManufacturersWColorsResponse) {}
+}
+
+message ColorsRequest {}
+message ColorsResponse {
+  WSColor data = 1;
+}
+
+message WSColor {
+  string id = 1;
+  string uuid = 2;
+  string image = 3;
+  string thumbnail = 4;
+  string ral = 5;
+  string title = 6;
+  string hex = 7;
+  string manufacturer = 8;
+  Collection collection = 9;
+}
+message Collection {
+  string id = 1;
+  string title = 2;
+}
+
+message NewColorRequest {
+  string image = 1;
+  string thumbnail = 2;
+  string ral = 3;
+  string title = 4;
+  string hex = 5;
+  string manufacturer = 6;
+  Collection collection = 7;
+}
+message NewColorResponse {
+  string id = 1;
+}
+
+message ManufacturersWColorsRequest {
+
+}
+
+message ManufacturersWColorsResponse {
+  string id = 1;
+  string manufacturer = 2;
+  message MCollections {
+    string id = 1;
+    string title = 2;
+    repeated WSColor colors = 3;
+  }
+  repeated MCollections collections = 3;
+}
+

@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package wood.doors;
+
+import "wood-colors.proto";
+
+option go_package = "./v1";
+
+service WoodDoorsApi {
+  rpc GetWoodDoors(WoodDoorsRequest) returns (stream WoodDoorsResponse) {}
+  rpc CreateWoodDoor(CreateWoodDoorRequest) returns (CreateWoodDoorResponse) {}
+}
+
+message WoodDoorsRequest {}
+message WoodDoorsResponse {
+  WoodDoor data = 1;
+}
+message WoodDoor {
+  string id = 1;
+  string title = 2;
+  float price = 3;
+  repeated string tags = 4;
+  repeated wood.color.WSColor colors = 5;
+  repeated string images = 7;
+}
+
+
+
+message WoodDoorSpecifications {
+  string material = 1;
+  string leaf_coating = 2;
+  string default_height = 3;
+  repeated string default_width = 4;
+  float leaf = 5;
+  string door_box_system = 6;
+  repeated string slopes = 7;
+  repeated string plinth = 8;
+  repeated string additional_pack = 9;
+  string custom_size = 10;
+  string custom_color = 11;
+}
+message WoodDoorVariant {
+  string color = 1;
+  repeated string images = 3;
+}
+message CreateWoodDoorRequest {
+  string title = 1;
+  bool for_catalog = 2;
+  map <string, float> price = 3;
+  string manufacturer = 4;
+  string collection = 5;
+  WoodDoorSpecifications specifications = 6;
+  repeated string tags = 7;
+  repeated WoodDoorVariant variants = 8;
+  repeated Reserve reserves = 9;
+}
+message Reserve {
+  string dealer = 1;
+  string address = 2;
+  string phone = 3;
+  string prepay = 4;
+  string order_date = 5;
+  string ready_date = 6;
+  string reserve_end_date = 7;
+  string state = 8;
+  string serial = 9;
+  float price_per_reserve = 10;
+  map<string, string> additional = 11;
+  map<string, string> size = 12;
+}
+message CreateWoodDoorResponse {
+  string status = 1;
+  optional string id = 2;
+}
