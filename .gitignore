@@ -2,5 +2,4 @@
 .idea
 .git
 js/
-pkg/api/
 mongodb

@@ -70,5 +70,5 @@ message Reserve {
 }
 message CreateWoodDoorResponse {
   string status = 1;
-  optional string id = 2;
+  string id = 2;
 }
