@@ -14,4 +14,4 @@ start:
 	go run cmd/temi_rpc/server.go
 
 up:
-	docker compose up --build
+	docker-compose up --build
