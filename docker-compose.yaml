@@ -6,6 +6,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - SSL_CERT=/run/secrets/nginx.cert
+      - SSL_KEY=/run/secrets/nginx.key
     command:
       - ./binary/server
     volumes:
