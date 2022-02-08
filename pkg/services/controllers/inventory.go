@@ -3,6 +3,7 @@ package controllers
 import (
 	"context"
 	"fmt"
+	col "temi_rpc/internal/collections"
 	pb "temi_rpc/pkg/api/v1"
 	"temi_rpc/pkg/services/models"
 	"temi_rpc/platform/database"
@@ -37,7 +38,7 @@ func CreateNewInventory(req *pb.NewInventoryRequest) (string, error) {
 
 	db := database.DB
 
-	result, err := db.Collection("inventories").InsertOne(context.Background(), &inventory)
+	result, err := db.Collection(col.Inventories).InsertOne(context.Background(), &inventory)
 	if err != nil {
 		return "", status.Errorf(codes.Internal, fmt.Sprintf("Inventory insert failed: %v", err))
 	}

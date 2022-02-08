@@ -3,6 +3,7 @@ package controllers
 import (
 	"context"
 	"fmt"
+	col "temi_rpc/internal/collections"
 	pb "temi_rpc/pkg/api/v1"
 	"temi_rpc/pkg/services/models"
 	"temi_rpc/platform/database"
@@ -19,7 +20,7 @@ import (
 func GetUserData(email string) (*models.GetUser, error) {
 	db := database.DB
 
-	result := db.Collection("users").FindOne(context.Background(), bson.M{"email": email})
+	result := db.Collection(col.Users).FindOne(context.Background(), bson.M{"email": email})
 	if result.Err() != nil {
 		return nil, status.Errorf(codes.NotFound, "requested user not found")
 	}
@@ -36,7 +37,7 @@ func GetUsers() ([]*pb.GetUserResponse, error) {
 	db := database.DB
 
 	dbResult := &models.GetUser{}
-	cursor, err := db.Collection("users").Find(
+	cursor, err := db.Collection(col.Users).Find(
 		context.Background(),
 		bson.M{},
 	)
@@ -93,7 +94,7 @@ func CreateNewUser(req *pb.NewUserRequest) (string, error) {
 	user.HashedPassword = string(password)
 
 	db := database.DB
-	result, err := db.Collection("users").InsertOne(context.Background(), &user)
+	result, err := db.Collection(col.Users).InsertOne(context.Background(), &user)
 	if err != nil {
 		return "", status.Errorf(codes.Internal, fmt.Sprintf("cannot insert user: %v", err))
 	}

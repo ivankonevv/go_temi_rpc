@@ -26,5 +26,5 @@ func Connect() {
 		return
 	}
 	logrus.Info("MongoDB connected.")
-	DB = *client.Database("test")
+	DB = *client.Database("temi-rpc-main-database")
 }

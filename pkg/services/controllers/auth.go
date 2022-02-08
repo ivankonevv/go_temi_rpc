@@ -3,6 +3,7 @@ package controllers
 import (
 	"context"
 	"fmt"
+	col "temi_rpc/internal/collections"
 	"temi_rpc/pkg/services/models"
 	"temi_rpc/platform/database"
 
@@ -16,7 +17,7 @@ func FindUser(email string) (*models.User, error) {
 	db := database.DB
 
 	dbResult := models.User{}
-	response := db.Collection("users").FindOne(context.Background(), bson.M{"email": email})
+	response := db.Collection(col.Users).FindOne(context.Background(), bson.M{"email": email})
 	if response.Err() != nil {
 		logrus.Printf("Cannot find user with email `%s`", email)
 		return nil, status.Errorf(codes.NotFound, fmt.Sprintf("User not found: %v", response.Err()))

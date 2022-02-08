@@ -3,10 +3,11 @@ package controllers
 import (
 	"context"
 	"fmt"
+	col "temi_rpc/internal/collections"
 	pb "temi_rpc/pkg/api/v1"
 	"temi_rpc/pkg/db_helpers"
 	"temi_rpc/pkg/services/models"
-	database2 "temi_rpc/platform/database"
+	"temi_rpc/platform/database"
 
 	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
@@ -18,13 +19,15 @@ import (
 	"google.golang.org/grpc/status"
 )
 
+const collection = "metalDoors"
+
 // GetSingleDoor func gets a single product from db.
 // Return codes.NotFound if product with such id is not exists, codes.Internal if response from db can't be decoded.
 func GetSingleDoor(id primitive.ObjectID) (*pb.SingleMetalDoorResponse, error) {
-	db := database2.DB
+	db := database.DB
 
 	dbResult := &models.SingleMetalDoorResponse{}
-	res := db.Collection("metal-doors").FindOne(context.Background(), bson.M{"_id": id})
+	res := db.Collection(col.MetalDoors).FindOne(context.Background(), bson.M{"_id": id})
 	if res.Err() != nil {
 		logrus.Printf("Cannot find post with id `%s`", id.Hex())
 		return nil, status.Errorf(codes.NotFound, fmt.Sprintf("Post not found: %v", res.Err()))
@@ -47,10 +50,10 @@ func GetSingleDoor(id primitive.ObjectID) (*pb.SingleMetalDoorResponse, error) {
 
 // GetDoors func gets a list of product from db.
 func GetDoors() ([]*pb.PostsResponse, error) {
-	db := database2.DB
+	db := database.DB
 
 	dbResult := &models.GetMetalDoor{}
-	cursor, err := db.Collection("metal-doors").Find(
+	cursor, err := db.Collection(col.MetalDoors).Find(
 		context.Background(),
 		bson.M{},
 		options.Find().SetProjection(db_helpers.GetDoorsProjection),
@@ -105,9 +108,9 @@ func GetDoors() ([]*pb.PostsResponse, error) {
 
 // CreateDoor - creates a new post with req data. Returns created object id and error.
 func CreateDoor(req *pb.CreatePostRequest) (primitive.ObjectID, error) {
-	db := database2.DB
+	db := database.DB
 
-	post, err := db.Collection("metal-doors").InsertOne(context.Background(), models.WriteMetalDoor{
+	post, err := db.Collection(col.MetalDoors).InsertOne(context.Background(), models.WriteMetalDoor{
 		UUID:           uuid.New().String(),
 		Title:          req.Title,
 		ForCatalog:     req.ForCatalog,
