@@ -41,7 +41,7 @@ func (s *WoodDoorsApiService) CreateWoodDoor(ctx context.Context, req *pb.Create
 	}
 
 	id := post.InsertedID.(primitive.ObjectID).Hex()
-	return &pb.CreateWoodDoorResponse{Status: "success", Id: &id}, nil
+	return &pb.CreateWoodDoorResponse{Status: "success", Id: id}, nil
 }
 
 func (s *WoodDoorsApiService) GetWoodDoors(req *pb.WoodDoorsRequest, stream pb.WoodDoorsApi_GetWoodDoorsServer) error {

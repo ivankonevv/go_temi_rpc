@@ -24,7 +24,7 @@ func (s *DoorsApiServer) CreatePost(_ context.Context, req *v1.CreatePostRequest
 
 	sId := id.Hex()
 
-	return &v1.CreatePostResponse{Id: &sId}, nil
+	return &v1.CreatePostResponse{Id: sId}, nil
 }
 
 func (s *DoorsApiServer) GetPosts(_ *v1.PostsRequest, stream v1.MetalDoorsApi_GetPostsServer) error {
