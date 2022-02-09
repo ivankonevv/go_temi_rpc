@@ -5,7 +5,7 @@ import (
 	"os"
 	"temi_rpc/internal/roles"
 	"temi_rpc/pkg/api/v1"
-	handlers "temi_rpc/pkg/services/handlers"
+	"temi_rpc/pkg/services/handlers"
 	"temi_rpc/platform/database"
 	"temi_rpc/tools"
 	"time"

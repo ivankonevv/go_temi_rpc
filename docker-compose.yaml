@@ -26,16 +26,16 @@ services:
     networks:
      - rpc-network
 
-#  envoy:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile.envoy
-#    volumes:
-#      - ./envoy.yaml:/etc/envoy.yaml
-#    ports:
-#      - ${ENVOY_PROXY_PORT}:8080
-#    networks:
-#      - rpc-network
+  envoy:
+    build:
+      context: .
+      dockerfile: Dockerfile.envoy
+    volumes:
+      - ./envoy.yaml:/etc/envoy.yaml
+    ports:
+      - ${ENVOY_PROXY_PORT}:8080
+    networks:
+      - rpc-network
 
   mongodb:
     image: mongo
