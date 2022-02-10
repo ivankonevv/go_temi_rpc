@@ -6,9 +6,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-#    environment:
-#      - SSL_CERT=/run/secrets/nginx.cert
-#      - SSL_KEY=/run/secrets/nginx.key
+    environment:
+      - SSL_CERT=/run/secrets/server.crt
+      - SSL_KEY=/run/secrets/server.key
     command:
       - ./binary/server
     volumes:
@@ -16,9 +16,9 @@ services:
     restart: unless-stopped
     depends_on:
       - mongodb
-#    secrets:
-#      - nginx.cert
-#      - nginx.key
+    secrets:
+      - server.crt
+      - server.key
     env_file:
       - .env
     ports:
@@ -27,6 +27,7 @@ services:
      - rpc-network
 
   envoy:
+    container_name: envoy
     build:
       context: .
       dockerfile: Dockerfile.envoy
@@ -69,20 +70,20 @@ services:
       - ./config/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - temi_rpc
-#    secrets:
-#      - nginx.cert
-#      - nginx.key
+    secrets:
+      - server.crt
+      - server.key
     ports:
       - "80:80"
       - "443:443"
     networks:
       - rpc-network
 
-#secrets:
-#  nginx.cert:
-#    file: ./cert/nginx.cert
-#  nginx.key:
-#    file: ./cert/nginx.key
+secrets:
+  server.crt:
+    file: ./cert/server.crt
+  server.key:
+    file: ./cert/server.key
 
 volumes:
   mongodb:

@@ -3,5 +3,7 @@ RUN apt-get update
 COPY envoy.yaml /etc/envoy.yaml
 CMD /usr/local/bin/envoy -c /etc/envoy.yaml
 
+EXPOSE 8080
+
 
 #docker run -d -p 8080:8080 envoy:v1
