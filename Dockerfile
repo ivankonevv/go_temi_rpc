@@ -9,7 +9,6 @@ RUN go mod download
 
 COPY . .
 
-
 RUN go build -o ./binary/server ./cmd/temi_rpc
 
 EXPOSE 8000
