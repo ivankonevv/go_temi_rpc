@@ -7,6 +7,13 @@ create-proto:
 clean-proto:
 	rm pkg/api/v1/*.go
 
+
+create-cert:
+	docker-compose up -d nginx && docker-compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ -v -d nbmfscafdcasc.xyz
+
+run-with-renew:
+	docker compose run --rm certbot renew
+
 start:
 	go run cmd/temi_rpc/server.go
 

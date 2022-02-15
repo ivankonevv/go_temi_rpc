@@ -43,8 +43,8 @@ static_resources:
               "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext
               common_tls_context:
                 tls_certificates:
-                  - certificate_chain: { filename: "/etc/nginx/ssl/live/nbmfscafdcasc.xyz/fullchain.pem" }
-                    private_key: { filename: "/etc/nginx/ssl/live/nbmfscafdcasc.xyz/privatekey.pem" }
+                  - certificate_chain: { filename: "cert-volume/live/nbmfscafdcasc.xyz/fullchain.pem" }
+                    private_key: { filename: "cert-volume/live/nbmfscafdcasc.xyz/privatekey.pem" }
 #                validation_context:
 #                  trusted_ca:
 #                    filename: /etc/ca.crt
