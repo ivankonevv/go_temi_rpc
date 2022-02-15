@@ -1,11 +1,12 @@
 package main
 
 import (
+	"crypto/tls"
 	"net"
 	"os"
 	"temi_rpc/internal/roles"
 	"temi_rpc/pkg/api/v1"
-	handlers "temi_rpc/pkg/services/handlers"
+	"temi_rpc/pkg/services/handlers"
 	"temi_rpc/platform/database"
 	"temi_rpc/tools"
 	"time"
@@ -13,6 +14,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/reflection"
 )
 
@@ -22,13 +24,12 @@ func main() {
 	}
 	database.Connect()
 
-	// backendCert, _ := ioutil.ReadFile(os.Getenv("SSL_CERT"))
-	// backendKey, _ := ioutil.ReadFile(os.Getenv("SSL_KEY"))
-	// cert, err := tls.X509KeyPair(backendCert, backendKey)
-	// if err != nil {
-	// 	logrus.Errorf("Cannot create SSL certificate")
-	// }
-	// creds := credentials.NewServerTLSFromCert(&cert)
+	cert, err := tls.LoadX509KeyPair(os.Getenv("SSL_CERT"), os.Getenv("SSL_KEY"))
+	if err != nil {
+		logrus.Errorf("Cannot create SSL certificate")
+	}
+	// config := &tls.Config{Certificates: []tls.Certificate{cert}}
+	creds := credentials.NewServerTLSFromCert(&cert)
 
 	jwtManager := tools.NewJWTManager(os.Getenv("JWT_SECRET_KEY"), time.Hour*10)
 
@@ -36,8 +37,12 @@ func main() {
 	grpcServer := grpc.NewServer(
 		grpc.UnaryInterceptor(interceptor.Unary()),
 		grpc.StreamInterceptor(interceptor.Stream()),
-		// grpc.Creds(creds),
+		grpc.Creds(creds),
 	)
+	// listener, err := net.Listen("tcp", os.Getenv("SERVER_URL"))
+	// if err != nil {
+	// 	logrus.Errorf("Cannot create net listener: %v", err)
+	// }
 	listener, err := net.Listen("tcp", os.Getenv("SERVER_URL"))
 	if err != nil {
 		logrus.Errorf("Cannot create net listener: %v", err)

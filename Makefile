@@ -7,8 +7,12 @@ create-proto:
 clean-proto:
 	rm pkg/api/v1/*.go
 
-nginx-cert:
-	openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ./cert/nginx.key -out ./cert/nginx.cert  -subj '/CN=nginx'
+
+create-cert:
+	docker-compose up -d nginx && docker-compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ -v -d nbmfscafdcasc.xyz
+
+run-with-renew:
+	docker compose run --rm certbot renew
 
 start:
 	go run cmd/temi_rpc/server.go

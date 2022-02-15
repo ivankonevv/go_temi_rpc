@@ -14,7 +14,7 @@ static_resources:
                   name: local_route
                   virtual_hosts:
                     - name: local_service
-                      domains: ["*"]
+                      domains: [ "*" ]
                       routes:
                         - match: { prefix: "/" }
                           route:
@@ -25,18 +25,29 @@ static_resources:
                         allow_origin_string_match:
                           - prefix: "*"
                         allow_methods: GET, PUT, DELETE, POST, OPTIONS
-                        allow_headers: keep-alive,user-agent,cache-control,content-type,content-transfer-encoding,custom-header-1,x-accept-content-transfer-encoding,x-accept-response-streaming,x-user-agent,x-grpc-web,grpc-timeout, id
+                        allow_headers: keep-alive,user-agent,cache-control,content-type,content-transfer-encoding,custom-header-1,x-accept-content-transfer-encoding,x-accept-response-streaming,x-user-agent,x-grpc-web,grpc-timeout>
                         max_age: "1728000"
                         expose_headers: custom-header-1,grpc-status,grpc-message
                 http_filters:
                   - name: envoy.filters.http.grpc_web
                   - name: envoy.filters.http.cors
                   - name: envoy.filters.http.router
+          transport_socket:
+            name: envoy.transport_socket.tls
+            typed_config:
+              "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext
+              common_tls_context:
+                tls_certificates:
+                  certificate_chain:
+                    filename: /etc/nginx/ssl/live/nbmfscafdcasc.xyz/fullchain.pem
+                  private_key:
+                    filename: /etc/nginx/ssl/live/nbmfscafdcasc.xyz/privkey.pem
+                alpn_protocols: "h2"
   clusters:
     - name: greeter_service
       connect_timeout: 0.25s
       type: logical_dns
-      http2_protocol_options: {}
+      http2_protocol_options: { }
       lb_policy: round_robin
       load_assignment:
         cluster_name: cluster_0
@@ -47,3 +58,7 @@ static_resources:
                     socket_address:
                       address: host.docker.internal
                       port_value: 8000
+      transport_socket:
+        name: envoy.transport_socket.tls
+        typed_config:
+          "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext
