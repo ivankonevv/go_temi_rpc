@@ -1,8 +1,3 @@
-admin:
-  access_log_path: /tmp/admin_access.log
-  address:
-    socket_address: { address: 0.0.0.0, port_value: 9901 }
-
 static_resources:
   listeners:
     - name: listener_0
@@ -30,7 +25,7 @@ static_resources:
                         allow_origin_string_match:
                           - prefix: "*"
                         allow_methods: GET, PUT, DELETE, POST, OPTIONS
-                        allow_headers: keep-alive,user-agent,cache-control,content-type,content-transfer-encoding,custom-header-1,x-accept-content-transfer-encoding,x-accept-response-streaming,x-user-agent,x-grpc-web,grpc-timeout, id
+                        allow_headers: keep-alive,user-agent,cache-control,content-type,content-transfer-encoding,custom-header-1,x-accept-content-transfer-encoding,x-accept-response-streaming,x-user-agent,x-grpc-web,grpc-timeout>
                         max_age: "1728000"
                         expose_headers: custom-header-1,grpc-status,grpc-message
                 http_filters:
@@ -43,12 +38,11 @@ static_resources:
               "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext
               common_tls_context:
                 tls_certificates:
-                  - certificate_chain: { filename: "cert-volume/live/nbmfscafdcasc.xyz/fullchain.pem" }
-                    private_key: { filename: "cert-volume/live/nbmfscafdcasc.xyz/privatekey.pem" }
-#                validation_context:
-#                  trusted_ca:
-#                    filename: /etc/ca.crt
-
+                  certificate_chain:
+                    filename: /etc/nginx/ssl/live/nbmfscafdcasc.xyz/fullchain.pem
+                  private_key:
+                    filename: /etc/nginx/ssl/live/nbmfscafdcasc.xyz/privkey.pem
+                alpn_protocols: "h2"
   clusters:
     - name: greeter_service
       connect_timeout: 0.25s
@@ -68,14 +62,3 @@ static_resources:
         name: envoy.transport_socket.tls
         typed_config:
           "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext
-#          common_tls_context:
-#            tls_certificates:
-#              - certificate_chain: { "filename": "/etc/server.crt" }
-#                private_key: { "filename": "/etc/server.key" }
-#            validation_context:
-#              match_typed_subject_alt_names:
-#                - san_type: DNS
-#                  matcher:
-#                    exact: "foo"
-#              trusted_ca:
-#                filename: /etc/ca.crt

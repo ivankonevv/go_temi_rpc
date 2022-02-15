@@ -2,14 +2,7 @@ FROM envoyproxy/envoy-dev:03d86fcde78d066a0d1dd7a48c8f1bb3d10859cf
 RUN apt-get update
 COPY envoy.yaml /etc/envoy.yaml
 
-ADD ./cert/server.crt /etc/server.crt
-ADD ./cert/server.key /etc/server.key
-ADD ./cert/ca.crt /etc/ca.crt
-
 CMD /usr/local/bin/envoy -c /etc/envoy.yaml
 
 EXPOSE 8080
 EXPOSE 9901
-
-
-#docker run -d -p 8080:8080 envoy:v1

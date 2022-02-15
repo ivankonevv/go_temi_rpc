@@ -13,7 +13,7 @@ services:
       - ./binary/server
     volumes:
       - .:/opt
-      - cert-volume:/etc/nginx/ssl/:ro
+      - ./certbot/conf/:/etc/nginx/ssl/
     restart: always
     depends_on:
       - mongodb
@@ -23,7 +23,6 @@ services:
       - ${SERVICE_PORT}:8000
     networks:
      - rpc-network
-
   envoy:
     container_name: envoy
     build:
@@ -31,12 +30,11 @@ services:
       dockerfile: Dockerfile.envoy
     volumes:
       - ./envoy.yaml:/etc/envoy.yaml
-      - cert-volume:/etc/nginx/ssl/:ro
+      - ./certbot/conf/:/etc/nginx/ssl/
     ports:
       - ${ENVOY_PROXY_PORT}:8080
     networks:
       - rpc-network
-
   mongodb:
     image: mongo
     container_name: ${MONGO_CONTAINER_NAME}
@@ -62,16 +60,15 @@ services:
       - ${MONGO_PORT}:27017
     networks:
       - rpc-network
-
   nginx:
     image: nginx:latest
     volumes:
-#      - ./config/nginx.conf:/etc/nginx/nginx.conf/:ro
+      - ./config/nginx.conf:/etc/nginx/nginx.conf/:ro
       - ./config/default.conf:/etc/nginx/conf.d/default.conf:ro
       - ./certbot/www:/var/www/certbot/:ro
       - ./certbot/conf/:/etc/nginx/ssl/:ro
-#    depends_on:
-#      - temi_rpc
+    depends_on:
+      - temi_rpc
     ports:
       - "80:80"
       - "443:443"
@@ -84,17 +81,9 @@ services:
       - ./config/default.conf:/etc/nginx/conf.d/default.conf:rw
       - ./certbot/conf:/etc/letsencrypt:rw
       - ./certbot/www/:/var/www/certbot/:rw
-
-#secrets:
-#  server.crt:
-#    file: ./cert/server.crt
-#  server.key:
-#    file: ./cert/server.key
-
 volumes:
   mongodb:
   cert-volume:
 
 networks:
   rpc-network: {}
-
