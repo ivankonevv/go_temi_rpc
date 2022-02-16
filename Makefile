@@ -14,6 +14,10 @@ create-cert_rpc:
 create-cert_api:
 	docker-compose up -d nginx && docker-compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ -v --dry-run -d api.nbmfscafdcasc.xyz
 
+create-cert_vue:
+	docker-compose up -d nginx && docker-compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ -v --dry-run -d nbmfscafdcasc.xyz
+
+
 run-with-renew:
 	docker compose run --rm certbot renew
 

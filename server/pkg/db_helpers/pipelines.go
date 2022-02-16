@@ -24,7 +24,7 @@ var MWCCollectionPipeline = []bson.M{
 var ProductWColorsPipeline = []bson.M{
 	{"$unwind": bson.M{"path": "$variants", "preserveNullAndEmptyArrays": true}},
 	{"$lookup": bson.M{
-		"from":         "wood-colors",
+		"from":         "woodColors",
 		"localField":   "variants.color",
 		"foreignField": "uuid",
 		"as":           "variants.color",

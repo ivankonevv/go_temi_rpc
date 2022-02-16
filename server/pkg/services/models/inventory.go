@@ -2,8 +2,9 @@ package models
 
 import (
 	"fmt"
-	pb "temi_rpc/pkg/api/v1"
 	"time"
+
+	pb "github.com/ivankonevv/go_temi_rpc/pkg/api/v1"
 )
 
 type Inventory struct {

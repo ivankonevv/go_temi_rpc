@@ -2,9 +2,10 @@ package handlers
 
 import (
 	"context"
-	"temi_rpc/pkg/api/v1"
-	"temi_rpc/pkg/services/controllers"
-	"temi_rpc/tools"
+
+	"github.com/ivankonevv/go_temi_rpc/pkg/api/v1"
+	"github.com/ivankonevv/go_temi_rpc/pkg/services/controllers"
+	"github.com/ivankonevv/go_temi_rpc/tools"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

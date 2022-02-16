@@ -2,10 +2,11 @@ package test
 
 import (
 	"reflect"
-	"temi_rpc/pkg/services/models"
-	"temi_rpc/tools"
 	"testing"
 	"time"
+
+	"github.com/ivankonevv/go_temi_rpc/pkg/services/models"
+	"github.com/ivankonevv/go_temi_rpc/tools"
 )
 
 func TestJWTManager_Generate(t *testing.T) {

@@ -3,9 +3,10 @@ package handlers
 import (
 	"context"
 	"fmt"
-	pb "temi_rpc/pkg/api/v1"
-	"temi_rpc/pkg/services/controllers"
-	"temi_rpc/tools"
+
+	pb "github.com/ivankonevv/go_temi_rpc/pkg/api/v1"
+	"github.com/ivankonevv/go_temi_rpc/pkg/services/controllers"
+	"github.com/ivankonevv/go_temi_rpc/tools"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"

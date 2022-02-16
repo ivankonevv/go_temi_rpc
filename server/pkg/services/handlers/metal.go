@@ -3,8 +3,10 @@ package handlers
 import (
 	"context"
 	"fmt"
-	"temi_rpc/pkg/api/v1"
-	"temi_rpc/pkg/services/controllers"
+
+	"github.com/ivankonevv/go_temi_rpc/pkg/services/controllers"
+
+	pb "github.com/ivankonevv/go_temi_rpc/pkg/api/v1"
 
 	"github.com/sirupsen/logrus"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -13,10 +15,10 @@ import (
 )
 
 type DoorsApiServer struct {
-	v1.UnimplementedMetalDoorsApiServer
+	pb.UnimplementedMetalDoorsApiServer
 }
 
-func (s *DoorsApiServer) CreatePost(_ context.Context, req *v1.CreatePostRequest) (*v1.CreatePostResponse, error) {
+func (s *DoorsApiServer) CreatePost(_ context.Context, req *pb.CreatePostRequest) (*pb.CreatePostResponse, error) {
 	id, err := controllers.CreateDoor(req)
 	if err != nil {
 		return nil, err
@@ -24,10 +26,10 @@ func (s *DoorsApiServer) CreatePost(_ context.Context, req *v1.CreatePostRequest
 
 	sId := id.Hex()
 
-	return &v1.CreatePostResponse{Id: sId}, nil
+	return &pb.CreatePostResponse{Id: sId}, nil
 }
 
-func (s *DoorsApiServer) GetPosts(_ *v1.PostsRequest, stream v1.MetalDoorsApi_GetPostsServer) error {
+func (s *DoorsApiServer) GetPosts(_ *pb.PostsRequest, stream pb.MetalDoorsApi_GetPostsServer) error {
 	result, err := controllers.GetDoors()
 	if err != nil {
 		return err
@@ -41,7 +43,7 @@ func (s *DoorsApiServer) GetPosts(_ *v1.PostsRequest, stream v1.MetalDoorsApi_Ge
 	return nil
 }
 
-func (s *DoorsApiServer) GetSingleMetalDoor(_ context.Context, req *v1.SingleMetalDoorRequest) (*v1.SingleMetalDoorResponse, error) {
+func (s *DoorsApiServer) GetSingleMetalDoor(_ context.Context, req *pb.SingleMetalDoorRequest) (*pb.SingleMetalDoorResponse, error) {
 	id, err := primitive.ObjectIDFromHex(req.Id)
 	if err != nil {
 		logrus.Errorf("GetSingleMetalDoor: cannot convert id to Object: %v", err)

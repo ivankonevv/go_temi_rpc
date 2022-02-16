@@ -3,8 +3,9 @@ package tools
 import (
 	"fmt"
 	"os"
-	"temi_rpc/pkg/services/models"
 	"time"
+
+	"github.com/ivankonevv/go_temi_rpc/pkg/services/models"
 
 	"github.com/dgrijalva/jwt-go"
 )

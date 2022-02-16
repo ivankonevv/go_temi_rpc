@@ -3,9 +3,10 @@ package controllers
 import (
 	"context"
 	"fmt"
-	col "temi_rpc/internal/collections"
-	"temi_rpc/pkg/services/models"
-	"temi_rpc/platform/database"
+
+	col "github.com/ivankonevv/go_temi_rpc/internal/collections"
+	"github.com/ivankonevv/go_temi_rpc/pkg/services/models"
+	"github.com/ivankonevv/go_temi_rpc/platform/database"
 
 	"github.com/sirupsen/logrus"
 	"go.mongodb.org/mongo-driver/bson"

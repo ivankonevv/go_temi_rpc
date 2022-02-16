@@ -1,7 +1,7 @@
 package models
 
 import (
-	pb "temi_rpc/pkg/api/v1"
+	pb "github.com/ivankonevv/go_temi_rpc/pkg/api/v1"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )

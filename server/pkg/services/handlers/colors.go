@@ -3,10 +3,11 @@ package handlers
 import (
 	"context"
 	"fmt"
-	"temi_rpc/pkg/api/v1"
-	"temi_rpc/pkg/db_helpers"
-	"temi_rpc/pkg/services/models"
-	database2 "temi_rpc/platform/database"
+
+	pb "github.com/ivankonevv/go_temi_rpc/pkg/api/v1"
+	"github.com/ivankonevv/go_temi_rpc/pkg/db_helpers"
+	"github.com/ivankonevv/go_temi_rpc/pkg/services/models"
+	"github.com/ivankonevv/go_temi_rpc/platform/database"
 
 	"github.com/google/uuid"
 	"go.mongodb.org/mongo-driver/bson"
@@ -17,7 +18,7 @@ import (
 )
 
 type WoodColorsApiService struct {
-	v1.UnimplementedColorsApiServer
+	pb.UnimplementedColorsApiServer
 }
 
 type GetCreator interface {
@@ -26,8 +27,8 @@ type GetCreator interface {
 
 // TODO: refactor this into separate files
 
-func (s *WoodColorsApiService) GetColors(req *v1.ColorsRequest, stream v1.ColorsApi_GetColorsServer) error {
-	db := database2.DB
+func (s *WoodColorsApiService) GetColors(req *pb.ColorsRequest, stream pb.ColorsApi_GetColorsServer) error {
+	db := database.DB
 	result := models.GetColor{}
 	cur, err := db.Collection("wood-colors").Find(context.Background(), bson.M{})
 	if err != nil {
@@ -45,8 +46,8 @@ func (s *WoodColorsApiService) GetColors(req *v1.ColorsRequest, stream v1.Colors
 			return status.Errorf(codes.Internal, fmt.Sprintf("Cannot decode result: %v", err))
 		}
 
-		err = stream.Send(&v1.ColorsResponse{
-			Data: &v1.WSColor{
+		err = stream.Send(&pb.ColorsResponse{
+			Data: &pb.WSColor{
 				Id:           result.ID.Hex(),
 				Uuid:         result.UUID,
 				Image:        result.Image,
@@ -66,8 +67,8 @@ func (s *WoodColorsApiService) GetColors(req *v1.ColorsRequest, stream v1.Colors
 	return nil
 }
 
-func (s *WoodColorsApiService) CreateColor(ctx context.Context, req *v1.NewColorRequest) (*v1.NewColorResponse, error) {
-	db := database2.DB
+func (s *WoodColorsApiService) CreateColor(ctx context.Context, req *pb.NewColorRequest) (*pb.NewColorResponse, error) {
+	db := database.DB
 	color, err := db.Collection("wood-colors").InsertOne(ctx, models.WriteColor{
 		Title:        req.Title,
 		UUID:         uuid.New().String(),
@@ -83,11 +84,11 @@ func (s *WoodColorsApiService) CreateColor(ctx context.Context, req *v1.NewColor
 	}
 
 	id := color.InsertedID.(primitive.ObjectID).Hex()
-	return &v1.NewColorResponse{Id: id}, nil
+	return &pb.NewColorResponse{Id: id}, nil
 }
 
-func (s *WoodColorsApiService) GetMwColors(req *v1.ManufacturersWColorsRequest, stream v1.ColorsApi_GetMwColorsServer) error {
-	db := database2.DB
+func (s *WoodColorsApiService) GetMwColors(req *pb.ManufacturersWColorsRequest, stream pb.ColorsApi_GetMwColorsServer) error {
+	db := database.DB
 	result := models.GetMwColors{}
 	cur, err := db.Collection("wood-colors-manufacturers").Aggregate(context.Background(), db_helpers.MWCCollectionPipeline)
 	if err != nil {
@@ -105,7 +106,7 @@ func (s *WoodColorsApiService) GetMwColors(req *v1.ManufacturersWColorsRequest, 
 			return status.Errorf(codes.Internal, fmt.Sprintf("Cannot decode result: %v", err))
 		}
 		fmt.Println(result)
-		err = stream.Send(&v1.ManufacturersWColorsResponse{
+		err = stream.Send(&pb.ManufacturersWColorsResponse{
 			Id:           result.ID.Hex(),
 			Manufacturer: result.Manufacturer,
 			Collections:  result.Collections,

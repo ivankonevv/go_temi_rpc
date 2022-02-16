@@ -1,35 +1,33 @@
 package main
 
 import (
-	"crypto/tls"
 	"net"
 	"os"
-	"temi_rpc/internal/roles"
-	"temi_rpc/pkg/api/v1"
-	"temi_rpc/pkg/services/handlers"
-	"temi_rpc/platform/database"
-	"temi_rpc/tools"
 	"time"
 
-	"github.com/joho/godotenv"
+	"github.com/ivankonevv/go_temi_rpc/internal/roles"
+	"github.com/ivankonevv/go_temi_rpc/pkg/api/v1"
+	"github.com/ivankonevv/go_temi_rpc/pkg/services/handlers"
+	"github.com/ivankonevv/go_temi_rpc/platform/database"
+	"github.com/ivankonevv/go_temi_rpc/tools"
+
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/reflection"
 )
 
 func main() {
-	if err := godotenv.Load(".env"); err != nil {
-		logrus.Errorf("Cannot find .env file: %v", err)
-	}
+	// if err := godotenv.Load("../.env"); err != nil {
+	// 	logrus.Errorf("Cannot find .env file: %v", err)
+	// }
 	database.Connect()
 
-	cert, err := tls.LoadX509KeyPair(os.Getenv("SSL_CERT"), os.Getenv("SSL_KEY"))
-	if err != nil {
-		logrus.Errorf("Cannot create SSL certificate")
-	}
-	// config := &tls.Config{Certificates: []tls.Certificate{cert}}
-	creds := credentials.NewServerTLSFromCert(&cert)
+	// cert, err := tls.LoadX509KeyPair(os.Getenv("SSL_CERT"), os.Getenv("SSL_KEY"))
+	// if err != nil {
+	// 	logrus.Errorf("Cannot create SSL certificate")
+	// }
+	// // config := &tls.Config{Certificates: []tls.Certificate{cert}}
+	// creds := credentials.NewServerTLSFromCert(&cert)
 
 	jwtManager := tools.NewJWTManager(os.Getenv("JWT_SECRET_KEY"), time.Hour*10)
 
@@ -37,12 +35,9 @@ func main() {
 	grpcServer := grpc.NewServer(
 		grpc.UnaryInterceptor(interceptor.Unary()),
 		grpc.StreamInterceptor(interceptor.Stream()),
-		grpc.Creds(creds),
+		// grpc.Creds(creds),
 	)
-	// listener, err := net.Listen("tcp", os.Getenv("SERVER_URL"))
-	// if err != nil {
-	// 	logrus.Errorf("Cannot create net listener: %v", err)
-	// }
+
 	listener, err := net.Listen("tcp", os.Getenv("SERVER_URL"))
 	if err != nil {
 		logrus.Errorf("Cannot create net listener: %v", err)

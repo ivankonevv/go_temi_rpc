@@ -1,4 +1,4 @@
-module temi_rpc
+module github.com/ivankonevv/go_temi_rpc
 
 go 1.17
 
