@@ -1,0 +1,203 @@
+div.about-block {
+  grid-area: about;
+  display: flex;
+  flex-direction: column;
+}
+
+span.about-block-title {
+  @media screen and (min-width: 320px){
+    margin-top: 30px;
+    font-size: 19px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  @media screen and (min-width: 480px){
+    margin-top: 30px;
+    font-size: 22px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  @media screen and (min-width: 768px){
+    margin-top: 30px;
+    font-size: 26px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  @media screen and (min-width: 1000px){
+    margin-top: 30px;
+    font-size: 26px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  @media screen and (min-width: 1440px){
+    margin-top: 30px;
+    font-size: 26px;
+    margin-left: 60px;
+    margin-right: 60px;
+  }
+}
+
+div.about-grid-container {
+  display: grid;
+  @media screen and (min-width: 320px){
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    gap: 20px;
+    grid-template-areas:
+            "leftup leftup "
+            "rightup leftdown"
+            "rightdown rightdown";
+  }
+  @media screen and (min-width: 480px){
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    gap: 20px;
+    grid-template-areas:
+            "leftup leftup "
+            "rightup leftdown"
+            "rightdown rightdown";
+  }
+  @media screen and (min-width: 768px){
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    gap: 20px;
+    grid-template-areas: "leftup leftup rightup"
+                        "leftdown rightdown rightdown";
+  }
+  @media screen and (min-width: 1000px){
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    gap: 20px;
+    grid-template-areas: "leftup rightup"
+                        "leftdown rightdown";
+  }
+  @media screen and (min-width: 1440px){
+    margin-top: 40px;
+    margin-left: 60px;
+    margin-right: 60px;
+    gap: 30px;
+    grid-template-areas: "leftup center rightup"
+                        "leftdown center rightdown";
+  }
+}
+
+div.about-small-box {
+  background-origin: border-box;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #ffffff;
+  @media screen and (min-width: 320px){
+    width: 280px;
+    height: 160px;
+  }
+  @media screen and (min-width: 480px){
+    width: 440px;
+    height: 182px;
+  }
+  @media screen and (min-width: 768px){
+    width: 470px;
+    height: 182px;
+  }
+  @media screen and (min-width: 1000px){
+    width: 470px;
+    height: 182px;
+  }
+  @media screen and (min-width: 1440px){
+    width: 420px;
+    height: 182px;
+  }
+}
+div.about-small-box:nth-child(even) {
+  background-color: #ffffff;
+  @media screen and (min-width: 320px){
+    width: 130px;
+    height: 113px;
+  }
+  @media screen and (min-width: 480px){
+    width: 210px;
+    height: 182px;
+  }
+  @media screen and (min-width: 768px){
+    width: 232px;
+    height: 182px;
+  }
+  @media screen and (min-width: 1000px){
+    width: 470px;
+    height: 182px;
+  }
+  @media screen and (min-width: 1440px){
+    width: 420px;
+    height: 182px;
+  }
+}
+
+div.about-big-box {
+  background-origin: border-box;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  background-color: #ffffff;
+  display: none;
+
+  @media screen and (min-width: 1440px){
+    display: initial;
+    width: 420px;
+    height: 397px;
+  }
+}
+
+span.about-box-title {
+  margin-top: 20px;
+  margin-left: 15px;
+  float: left;
+  font-weight: 600;
+  font-size: 17px;
+  @media screen and (min-width: 480px){
+    font-size: 22px;
+  }
+  @media screen and (min-width: 768px){
+    font-size: 22px;
+  }
+  @media screen and (min-width: 1000px){
+    font-size: 22px;
+  }
+  @media screen and (min-width: 1440px){
+    font-size: 22px;
+  }
+}
+
+div.about-line {
+  height: 7px;
+  float: left;
+  margin-left: 15px;
+  background-color: #EE6723;
+  width: 70%;
+}
+
+span.about-box-text {
+  float: left;
+  margin: 20px 15px 0;
+  font-size: 15px;
+  @media screen and (min-width: 480px){
+    font-size: 20px;
+  }
+  @media screen and (min-width: 768px){
+    font-size: 20px;
+  }
+  @media screen and (min-width: 1000px){
+    font-size: 20px;
+  }
+  @media screen and (min-width: 1440px){
+    font-size: 20px;
+  }
+}
+
+
+
+

@@ -1,0 +1,199 @@
+div.sidebar-container {
+    grid-area: nav;
+
+    /*max-height: 486px;*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+}
+.sidebar-wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+
+}
+
+div.sidebar-dropdown-container {
+    display: flex;
+    flex-direction: column;
+}
+
+span.sidebar-dropdown-title {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+div.sidebar-dropdown-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+a.sidebar-dropdown-item {
+    height: 24px;
+    color: inherit;
+    text-decoration: none;
+}
+
+a.sidebar-item {
+    cursor: pointer;
+    font-size: 20px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.sidebar-child {
+    cursor: pointer;
+    font-size: 17px;
+    text-decoration: none;
+    color: inherit;
+}
+
+div.sidebar-item {
+    cursor: pointer;
+    /*font-size: 15px;*/
+    margin-left: 20px;
+}
+div.sidebar-child-container {
+    cursor: pointer;
+    /*font-size: 15px;*/
+    margin-left: 20px;
+}
+
+a.sidebar-item:last-child {
+    margin-bottom: 30px;
+}
+
+div.sidebar-dropdown-parent {
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+}
+@media screen and (min-width: 320px) {
+    div.sidebar-container {
+        width: 280px;
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+
+    div.sidebar-dropdown-container {
+        margin-top: 14px;
+        margin-left: 20px;
+        margin-bottom: 14px;
+        gap: 25px;
+    }
+
+    div.sidebar-dropdown-menu {
+        margin-left: 5px;
+        gap: 10px;
+    }
+
+    a.sidebar-dropdown-item {
+        font-size: 17px;
+    }
+
+    .sidebar-item {
+        display: none;
+    }
+}
+
+
+@media screen and (min-width: 480px) {
+    div.sidebar-container {
+        width: 229px;
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+
+    div.sidebar-dropdown-container {
+        margin-top: 14px;
+        margin-left: 20px;
+        margin-bottom: 14px;
+        gap: 25px;
+    }
+
+    div.sidebar-dropdown-menu {
+        margin-left: 5px;
+        gap: 10px;
+    }
+
+    a.sidebar-dropdown-item {
+        font-size: 17px;
+    }
+
+    .sidebar-item {
+        display: none;
+    }
+}
+
+
+@media screen and (min-width: 768px) {
+    div.sidebar-container {
+        width: 229px;
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+
+    div.sidebar-dropdown-container {
+        margin-top: 14px;
+        margin-left: 20px;
+        margin-bottom: 14px;
+        gap: 25px;
+    }
+
+    div.sidebar-dropdown-menu {
+        margin-left: 5px;
+        gap: 10px;
+    }
+
+    a.sidebar-dropdown-item {
+        font-size: 17px;
+    }
+
+    .sidebar-item {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    div.sidebar-container {
+        width: 225px;
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+    div.sidebar-dropdown-container {
+        margin-top: 30px;
+        margin-left: 20px;
+        gap: 25px;
+    }
+    div.sidebar-dropdown-menu {
+        margin-left: 5px;
+        gap: 10px;
+    }
+    a.sidebar-dropdown-item {
+        font-size: 17px;
+    }
+    .sidebar-item {
+        display: initial;
+    }
+}
+@media screen and (min-width: 1440px) {
+    div.sidebar-container {
+        width: 308px;
+        margin-top: 30px;
+        margin-left: 60px;
+    }
+    div.sidebar-dropdown-container {
+        margin-top: 30px;
+        margin-left: 34px;
+        gap: 25px;
+    }
+    div.sidebar-dropdown-menu {
+        margin-left: 24px;
+        gap: 15px;
+    }
+    a.sidebar-dropdown-item {
+        font-size: 20px;
+    }
+    .sidebar-item {
+        display: initial;
+    }
+}

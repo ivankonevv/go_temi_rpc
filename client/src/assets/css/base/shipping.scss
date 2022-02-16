@@ -1,0 +1,237 @@
+.shipping-page-container {
+  max-width: 725px;
+  height: auto;
+}
+
+.shipping-info-container {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 70px;
+  @media screen and (min-width: 320px) {
+    width: 280px;
+  }
+  @media screen and (min-width: 480px) {
+    width: 440px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 728px;
+  }
+  @media screen and (min-width: 1000px) {
+    width: 715px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 982px;
+  }
+}
+
+.shipping-info-section {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.shipping-info-title {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                   supported by Chrome, Edge, Opera and Firefox */
+
+  span {
+    margin-left: 34px;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+
+    font-weight: normal;
+    max-width: 70%;
+    @media screen and (min-width: 320px) {
+      font-size: 17px;
+      margin-left: 10px;
+    }
+    @media screen and (min-width: 480px) {
+      font-size: 20px;
+      margin-left: 14px;
+    }
+    @media screen and (min-width: 768px) {
+      font-size: 20px;
+      margin-left: 24px;
+    }
+    @media screen and (min-width: 1000px) {
+      font-size: 20px;
+      margin-left: 34px;
+    }
+    @media screen and (min-width: 1440px) {
+      font-size: 20px;
+      margin-left: 34px;
+    }
+  }
+
+  svg {
+    margin-left: auto;
+    height: 13px;
+    width: 28px;
+    align-self: center;
+
+    @media screen and (min-width: 320px) {
+      margin-right: 20px;
+    }
+    @media screen and (min-width: 480px) {
+      margin-right: 14px;
+    }
+    @media screen and (min-width: 768px) {
+      margin-right: 24px;
+    }
+    @media screen and (min-width: 1000px) {
+      margin-right: 34px;
+    }
+    @media screen and (min-width: 1440px) {
+      margin-right: 34px;
+    }
+  }
+}
+
+.shipping-info-description {
+  margin-left: 34px;
+  margin-bottom: 15px;
+  margin-right: 64px;
+
+  font-size: 17px;
+
+  @media screen and (min-width: 320px) {
+    font-size: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  @media screen and (min-width: 480px) {
+    font-size: 15px;
+    margin-left: 14px;
+    margin-right: 15px;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: 17px;
+    margin-left: 24px;
+    margin-right: 20px;
+  }
+  @media screen and (min-width: 1000px) {
+    font-size: 17px;
+    margin-left: 34px;
+    margin-right: 20px;
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: 17px;
+    margin-left: 34px;
+    margin-right: 64px;
+  }
+}
+
+.shipping-cards-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 30px;
+
+  @media screen and (min-width: 320px) {
+    width: 280px;
+    gap: 20px;
+  }
+  @media screen and (min-width: 480px) {
+    width: 440px;
+    gap: 20px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 748px;
+    gap: 30px;
+  }
+  @media screen and (min-width: 1000px) {
+    width: 725px;
+    gap: 30px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 1022px;
+    gap: 30px;
+  }
+}
+
+.shipping-card {
+  position: relative;
+
+  width: 277px;
+  height: 190px;
+  text-align: center;
+  justify-content: center;
+  vertical-align: middle;
+
+  background-color: #ffffff;
+
+  svg {
+    position: relative;
+    top: 20px;
+    height: 50%;
+    width: 50%;
+    vertical-align: middle;
+  }
+
+  @media screen and (min-width: 320px) {
+    width: 130px;
+    height: 117px;
+  }
+  @media screen and (min-width: 480px) {
+    width: 210px;
+    height: 190px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 330px;
+    height: 190px;
+  }
+  @media screen and (min-width: 1000px) {
+    width: 330px;
+    height: 190px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 308px;
+    height: 190px;
+  }
+}
+
+#shipping-card-title {
+  width: auto;
+  height: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+
+  font-weight: lighter;
+
+
+  @media screen and (min-width: 320px) {
+    top: 84px;
+    font-size: 12px;
+  }
+  @media screen and (min-width: 480px) {
+    top: 140px;
+    font-size: 15px;
+  }
+  @media screen and (min-width: 768px) {
+    top: 140px;
+    font-size: 17px;
+  }
+  @media screen and (min-width: 1000px) {
+    top: 140px;
+    font-size: 17px;
+  }
+  @media screen and (min-width: 1440px) {
+    top: 140px;
+    font-size: 17px;
+  }
+}

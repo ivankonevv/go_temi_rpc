@@ -1,0 +1,16 @@
+div.blog-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/*@media screen and (min-width: 1000px) {*/
+/*    div.blog-container {*/
+/*        gap: 20px;*/
+/*    }*/
+/*}*/
+/*@media screen and (min-width: 1440px) {*/
+/*    div.blog-container {*/
+/*        gap: 30.5px;*/
+/*    }*/
+/*}*/

@@ -1,0 +1,113 @@
+.console-header-container {
+    position: relative;
+    top: 0;
+    width: 100%;
+    /*background-color: #072544;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+
+.console-header-user-block {
+    height: 100%;
+    position: relative;
+    /*background-color: #EE6723;*/
+    /*border-radius: 20px;*/
+    width: 20%;
+    /*height: 60%;*/
+    /*height: 50px;*/
+    /*margin-right: 50px;*/
+}
+
+.console-header-user-avatar {
+    cursor: pointer;
+    float: left;
+    margin-top: 7%;
+    border: .2vw #75cec5 solid;
+    border-radius: 1.6vw;
+    height: 3.5vw;
+    width: 18%;
+    box-shadow: rgba(0, 0, 0, 0.04) 0 7px 11px;
+    display: flex;
+}
+
+.console-header-user-name-block {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+    margin-left: 5%;
+    float: left;
+}
+
+span.console-header-user-name {
+    color: #a3aebe;
+    font-size: 1.7vw;
+}
+
+.not-selectable-text {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;
+}
+
+span.console-header-user-email {
+    font-size: 1vw;
+}
+
+
+svg.console-header-user-icon {
+    margin: auto;
+    width: 50%;
+    fill: #a3aebe;
+}
+
+div.console-header-menu-block {
+    top: 6vw;
+    position: absolute;
+    width: 12vw;
+    border-radius: 1vw;
+    /*height: 10vh;*/
+    /*background-color: #EE6723;*/
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+}
+
+.console-header-menu-row {
+    margin-left: 1vh;
+    margin-right: 1vh;
+    border-radius: 10px;
+    display: flex;
+    height: 2.5vw;
+}
+
+.console-header-menu-row:hover {
+    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.10);
+}
+
+.console-header-menu-row:first-child {
+    margin-top: 2vh;
+}
+.console-header-menu-row:last-child {
+    margin-bottom: 2vh;
+}
+
+a.console-header-menu-link {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 1.5vw;
+    font-size: 1vw;
+}
+
+div.console-header-menu-underline {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    height: 1px;
+    background-color: #a9a9aa;
+    opacity: 30%;
+}
