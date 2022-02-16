@@ -7,8 +7,8 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      - SSL_CERT=cert-volume/live/nbmfscafdcasc.xyz/fullchain.pem
-      - SSL_KEY=cert-volume/live/nbmfscafdcasc.xyz/privatekey.pem
+      - SSL_CERT=cert-volume/live/${SERVER_DOMAIN_NAME}/fullchain.pem
+      - SSL_KEY=cert-volume/live/${SERVER_DOMAIN_NAME}/privatekey.pem
     command:
       - ./binary/server
     volumes:
@@ -61,6 +61,7 @@ services:
     networks:
       - rpc-network
   nginx:
+    container_name: ${NGINX_CONTAINER_NAME}
     image: nginx:latest
     volumes:
       - ./config/nginx.conf:/etc/nginx/nginx.conf/:ro
